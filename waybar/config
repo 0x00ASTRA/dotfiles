@@ -1,0 +1,143 @@
+{
+    "layer": "bottom",
+    "height": 40,
+    "reload_style_on_change": true,
+    "position": "bottom",
+    "spacing": 8,
+    "font": "JetBrainsMono Nerd Font, 14",
+
+    "modules-left": [
+        "custom/launcher",
+        "temperature",
+        "cpu",
+        "memory",
+        "disk"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [ 
+        "network",
+        "backlight",
+        "pulseaudio",
+        "battery",
+        "tray"
+    ],
+
+    // =========================================================================
+    // Module Configurations
+    // =========================================================================
+
+    "custom/launcher": {
+        "format": " ",
+        "tooltip": "false",
+        "on-click": "wofi -show drun",
+        "class": "launcher"
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-",
+        "class": "brightness"
+    },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C",
+        "format-critical": " {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "GPU: {temperatureC}°C",
+        "interval": 5,
+        "class": "temperature"
+    },
+
+    "cpu": {
+        "format": "  CPU: {usage}%",
+        "tooltip": true,
+        "tooltip-format": "CPU: {usage}% (Freq: {frequency} GHz)",
+        "on-click": "kitty -e htop",
+        "interval": 1
+    },
+
+    "memory": {
+        "format": "󰍛 RAM: {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "Memory: {used}/{total} ({percentage}%)",
+        "on-click": "kitty -e htop",
+        "interval": 2
+    },
+
+    "disk": {
+        "path": "/",
+        "format": "  Disk: {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "Root: {used}/{total} ({percentage_used}%)",
+        "interval": 60
+    },
+
+    "network": {
+        "format-wifi": "󰖩  {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀  Wired",
+        "format-disconnected": "󰖪  Disconnected",
+        "tooltip": true,
+        "tooltip-format-wifi": "WiFi: {essid} ({signalStrength}%)\nIP: {ipaddr}\nDownload: {bandwidthDownBits}bits/s | Upload: {bandwidthUpBits}bits/s",
+        "tooltip-format-ethernet": "Wired: {ifname}\nIP: {ipaddr}\nDownload: {bandwidthDownBits}bits/s | Upload: {bandwidthUpBits}bits/s",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "nm-connection-editor",
+        "interval": 5
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": [" ", " ", " "]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "tooltip": true,
+        "tooltip-format": "Audio: {volume}%",
+        "class": "volume"
+    },
+
+    "battery": {
+        "interval": 10,
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-charging-full": "󰂅 {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "tooltip": "{}",
+        "tooltip-format": " {power}W"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "  {:%I:%M %p}",
+        "format-alt": " {:%Y-%m-%d}",
+        "tooltip": true,
+        "tooltip-format": "<big>{:%A, %B %d, %Y \n\n%I:%M %p %Z}</big>",
+        "on-click": "gnome-calendar",
+        "interval": 1
+    }
+}

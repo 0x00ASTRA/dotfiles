@@ -2,7 +2,7 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 -- Leader key
-vim.g.mapleader = ' '
+vim.g.mapleader = '.'
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
@@ -15,11 +15,10 @@ map('n', '<leader><Tab>', '<cmd>NvimTreeToggle<cr>', opts)
 
 -- ToggleTerm
 map('n', '<leader>t', '<cmd>ToggleTerm<cr>', opts)
-map('t', '<leader>t', [[<C-\><C-N><cmd>ToggleTerm<cr>]], opts)  -- Terminal mode mapping
+--map('t', '<leader>t', [[<C-\><C-N><cmd>ToggleTerm<cr>]], opts)  -- Terminal mode mapping
+-- Exit terminal mode with Esc
+map('t', '<Esc>', '<C-\\><C-n>', opts)
 
--- KOSTelnet
-map('n', '<leader>kt', '<cmd>ToggleKOSTelnet 127.0.0.1<CR>', opts)
-map('t', '<leader>kt', [[<C-\><C-N><cmd>ToggleKOSTelnet<cr>]], opts)  -- Terminal mode mapping
 
 -- Buffer management
 map('n', '<leader>bn', ':bnext<cr>', opts)  -- Next buffer
@@ -49,3 +48,4 @@ map('n', '<S-Up>', ':resize +2<cr>', opts)
 map('n', '<S-Down>', ':resize -2<cr>', opts)
 map('n', '<S-Left>', ':vertical resize -2<cr>', opts)
 map('n', '<S-Right>', ':vertical resize +2<cr>', opts)
+

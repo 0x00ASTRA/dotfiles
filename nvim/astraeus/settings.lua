@@ -1,6 +1,6 @@
 -- settings.lua
 vim.o.number = true
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 vim.o.clipboard = 'unnamedplus'
 vim.o.expandtab = true
 vim.o.shiftwidth = 4
@@ -17,5 +17,5 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 -- Theme
-vim.cmd [[colorscheme tokyonight]]
+-- vim.cmd [[colorscheme cyberdream]]
 

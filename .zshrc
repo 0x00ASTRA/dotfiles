@@ -1,18 +1,12 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 export ANDROID_HOME="/opt/android-sdk"
-#export NDK_HOME="/opt/android-ndk"
 
 export PATH="$ANDROID_HOME/tools:$PATH"
 
@@ -20,28 +14,37 @@ export PATH="$ANDROID_HOME/tools:$PATH"
 
 # --------------------------------{ ASTRA ]-----------------------------------------------
 
-# add zigmod to PATH ( Package manager for zig )
-export PATH="$PATH:$HOME/Zig/zigmod/zig-out/bin/"
+if [[ -r "$HOME/zsh-autocomplete/zsh-autocomplete.plugin.zsh" ]]; then
+    source "$HOME/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
+fi
 
-# Unreal Engine
-alias unreal-editor="/opt/unreal-engine/Engine/Binaries/Linux/UnrealEditor"
-alias ue=unreal-editor
+# Hyprpaper
+export WALLPAPER_DIR="$HOME/wallpapers/"
+export CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+# Get the name of the focused monitor with hyprctl
+export FOCUSED_MONITOR=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')
 
-function obsidian() {
-    cd $HOME/Obsidian
-    ./*.AppImage
+function random-wallpaper() {
+    # Get a random wallpaper that is not the current one
+    local WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+
+    # Apply the selected wallpaper
+    hyprctl hyprpaper reload "$FOCUSED_MONITOR","$WALLPAPER"
 }
 
-# Open WebUI
-function open-webui() {
-    ollama serve &
-    $HOME/Open-WebUI/.venv/bin/open-webui serve
+alias randwall=random-wallpaper
+alias rwall=random-wallpaper
+
+function set-wallpaper() {
+    hyprctl hyprpaper reload "$FOCUSED_MONITOR", "$1"
 }
-alias owu=open-webui
+alias setwall=set-wallpaper
+alias swall=set-wallpaper
 
-# vscodium
-alias code=codium
-
+# Waybar
+function reload-waybar() {
+    sudo kill $(pgrep waybar) && hyprctl dispatch exec waybar
+}
 
 # eza (replace ls)
 function ls() {
@@ -54,21 +57,11 @@ function la() {
 
 #  ZSH Auto-Complete
 plugins=( 
-    git
-    zsh-autosuggestions
-    
+    git 
 )
 
 # Scripts
 export PATH="$PATH:$HOME/.scripts/"
-
-# Kerbal Space Program
-export KSP_PATH="$HOME/KSP_linux"
-
-function ksp() {
-    cd $KSP_PATH
-    "$KSP_PATH/run.sh"
-}
 
 
 # Fix Brave Browser SingletonLock
@@ -87,18 +80,18 @@ function activate-venv() {
 }
 
 function venv() {
-    python3 -m venv .venv
+    uv venv
     activate-venv
 }
 
 alias activenv=activate-venv
 alias avenv=activate-venv
+
+# Run programs
+alias hyprexec="hyprctl dispatch exec"
+alias run=hyprexec
 # ---------------------------------------------------------------------------------------- 
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -199,15 +192,17 @@ alias vim=nvim
 unalias ls 2>/dev/null
 unalias la 2>/dev/null
 
-alias aarch64-ld="/home/astraeus/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/aarch64-none-elf/bin/ld"
-alias aarch64-objcopy="/home/astraeus/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/aarch64-none-elf/bin/objcopy"
-alias aarch64-objdump="/home/astraeus/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/aarch64-none-elf/bin/objdump"
-alias aarch64-as="/home/astraeus/arm-gnu-toolchain-13.3.rel1-x86_64-aarch64-none-elf/aarch64-none-elf/bin/as"
 
 # bun completions
-[ -s "/home/astraeus/.bun/_bun" ] && source "/home/astraeus/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"$
 export BRAVE_PASSWORD_STORE=basic
+
+# ZVM
+export ZVM_INSTALL="$HOME/.zvm/self"
+export PATH="$PATH:$HOME/.zvm/bin"
+export PATH="$PATH:$ZVM_INSTALL/"
+

@@ -29,14 +29,28 @@ require('nvim-treesitter.configs').setup({
 })
 
 -- null-ls Configuration
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.black,
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.diagnostics.flake8,
-    },
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.formatting.prettier,
+--         null_ls.builtins.formatting.black,
+--         null_ls.builtins.diagnostics.eslint,
+--         null_ls.builtins.diagnostics.flake8,
+--         null_ls.builtins.formatting.zigfmt,
+--     },
+-- })
+
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+    zig = {"zig fmt", lsp_format = "fallback"},
+  },
 })
 
 -- Gitsigns Configuration
@@ -66,12 +80,12 @@ require('nvim-tree').setup({
 
 -- Toggleterm Configuration
 require('toggleterm').setup({
-    size = 20,
+    size = 10,
     open_mapping = [[<c-\>]],
     hide_numbers = true,
     shade_terminals = true,
     start_in_insert = true,
-    direction = 'float',
+    direction = 'horizontal',
 })
 
 -- Lualine Configuration
@@ -87,12 +101,23 @@ require('lualine').setup({
 -- Tokyo Night Theme Configuration
 require('tokyonight').setup({
     style = "storm",
-    transparent = false,
+    transparent = true,
     terminal_colors = true,
 })
 
--- Set colorscheme
-vim.cmd[[colorscheme tokyonight]]
+require('cyberdream').setup({
+    variant = "default",
+    transparent = true,
+    terminal_colors = true,
+    italic_comments = true,
+})
+
+-- -- Set colorscheme
+vim.cmd[[colorscheme cyberdream]]
 
 -- Kerboscript Configuration
 --require('kerbovim').setup({})
+
+require('transparent').setup({
+    
+})

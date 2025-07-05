@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/astraeus/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?.lua;/home/astraeus/.cache/nvim/packer_hererocks/2.1.1731601260/share/lua/5.1/?/init.lua;/home/astraeus/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?.lua;/home/astraeus/.cache/nvim/packer_hererocks/2.1.1731601260/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/astraeus/.cache/nvim/packer_hererocks/2.1.1731601260/lib/lua/5.1/?.so"
+local package_path_str = "/home/astra/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?.lua;/home/astra/.cache/nvim/packer_hererocks/2.1.1741730670/share/lua/5.1/?/init.lua;/home/astra/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?.lua;/home/astra/.cache/nvim/packer_hererocks/2.1.1741730670/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/astra/.cache/nvim/packer_hererocks/2.1.1741730670/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,102 +76,117 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   LuaSnip = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["conform.nvim"] = {
+    config = { "\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0" },
+    loaded = true,
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
+  ["cyberdream.nvim"] = {
+    loaded = true,
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/cyberdream.nvim",
+    url = "https://github.com/scottmckendry/cyberdream.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   kerbovim = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/kerbovim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/kerbovim",
     url = "https://github.com/Freedzone/kerbovim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mini.icons"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/mini.icons",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/mini.icons",
     url = "https://github.com/echasnovski/mini.icons"
-  },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["transparent.nvim"] = {
+    loaded = true,
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/transparent.nvim",
+    url = "https://github.com/xiyaowong/transparent.nvim"
   },
   ["which-key.nvim"] = {
     loaded = true,
-    path = "/home/astraeus/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    path = "/home/astra/.local/share/nvim/site/pack/packer/start/which-key.nvim",
     url = "https://github.com/folke/which-key.nvim"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: conform.nvim
+time([[Config for conform.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fconform\frequire\0", "config", "conform.nvim")
+time([[Config for conform.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

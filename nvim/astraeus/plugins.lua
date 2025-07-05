@@ -28,7 +28,13 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip' -- Snippets`
 
   -- Formatting and Linting
-  use 'jose-elias-alvarez/null-ls.nvim'
+--  use 'jose-elias-alvarez/null-ls.nvim'
+  use({
+    "stevearc/conform.nvim",
+    config = function()
+      require("conform").setup()
+    end,
+  })
 
   -- Git Integration
   use 'lewis6991/gitsigns.nvim'
@@ -47,8 +53,10 @@ return require('packer').startup(function(use)
 
   -- UI Improvements
   use 'nvim-lualine/lualine.nvim' -- Statusline
+  use 'xiyaowong/transparent.nvim'
   use 'kyazdani42/nvim-web-devicons' -- Icons
   use 'folke/tokyonight.nvim' -- Theme
+  use 'scottmckendry/cyberdream.nvim'
   use "nvim-lua/popup.nvim"
   use 'folke/which-key.nvim'
   use {
